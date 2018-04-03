@@ -18,6 +18,24 @@ module.exports = {
       {key: 'directions', required: true, type: 'text', helpText: 'Explain how should one make the recipe, step by step.'},
       {key: 'authorId', required: true, type: 'integer', label: 'Author ID'},
       {key: 'style', required: false, type: 'string', helpText: 'Explain what style of cuisine this is.'},
+      {
+        key: 'ingredients',
+        children: [
+          {
+            key: 'notes',
+            type: 'string',
+            helpText: 'Removing this input exposes the expected error.',
+          },
+          {
+            key: 'ingredients1',
+            children: [
+              {key: 'name', type: 'string', helpText: 'These grandchildren are illegal.'},
+              {key: 'amount', type: 'number'},
+              {key: 'units', type: 'string'}
+            ]
+          }
+        ]
+      }
     ],
     perform: (z, bundle) => {
       const promise = z.request({
